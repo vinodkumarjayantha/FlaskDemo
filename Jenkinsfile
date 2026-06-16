@@ -19,7 +19,7 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                bat 'pytest --html=report.html'
+                bat 'python -m pytest --html=reports/report.html'
             }
         }
 
