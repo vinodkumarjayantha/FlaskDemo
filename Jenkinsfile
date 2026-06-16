@@ -23,9 +23,10 @@ pipeline {
             }
         }
 
-        stage('Archive Report') {
+        stage('Run Tests') {
             steps {
-                archiveArtifacts artifacts: 'reports/report.html'
+                sh 'mkdir -p reports'
+                sh 'python3 -m pytest --html=reports/report.html --self-contained-html'
             }
         }
     }
