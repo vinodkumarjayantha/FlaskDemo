@@ -13,19 +13,19 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh 'pip install -r requirements.txt'
+                sh 'python3 -m pip install -r requirements.txt'
             }
         }
 
         stage('Run Tests') {
             steps {
-                sh 'python -m pytest --html=reports/report.html'
+                sh 'python3 -m pytest --html=reports/report.html'
             }
         }
 
         stage('Archive Report') {
             steps {
-                archiveArtifacts artifacts: 'report.html'
+                archiveArtifacts artifacts: 'reports/report.html'
             }
         }
     }
