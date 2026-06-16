@@ -19,14 +19,14 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                sh 'python3 -m pytest --html=reports/report.html'
+                sh 'mkdir -p reports'
+                sh 'python3 -m pytest --html=reports/report.html --self-contained-html'
             }
         }
 
-        stage('Run Tests') {
+        stage('Archive Report') {
             steps {
-                sh 'mkdir -p reports'
-                sh 'python3 -m pytest --html=reports/report.html --self-contained-html'
+                archiveArtifacts artifacts: 'reports/report.html'
             }
         }
     }
